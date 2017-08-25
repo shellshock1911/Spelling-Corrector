@@ -68,19 +68,24 @@ def read_input(input_file):
     # Return split passage to main function in spelling_correct.py
     return split_passage
 
-def _is_a_word(token):
+def _is_a_misspelling(token):
     
     """Differentiates word tokens from non-word tokens"""
     
-    # Ignore if token is a non-alphabetical string, e.g. numbers, punctuation, etc.
+    # Ignore token if a number, punctuation, whitespace, etc.
     if not token.isalpha():
         return False
-    # Ignore if token is whitespace, e.g. space, tab, newline, ec.
-    elif token in string.whitespace:
+    # Ignore if token is in English dictionary
+    # Doesn't need to be corrected
+    elif token in ENGLISH_WORDS:
         return False
-    # Otherwise, token must be a word
-    else:
-        return True
+    # Ignore if token begins with capital letter
+    # Could be name of person, place, company, etc.
+    elif token[0] in string.ascii_uppercase:
+        return False
+    # Otherwise, no correction needed
+    # True will be returned at this point
+    return True
         
 def correct_spelling(tokens, logging, current_input):
     
@@ -90,40 +95,22 @@ def correct_spelling(tokens, logging, current_input):
     log_words = []
     # Check each word in text for possible misspelling
     for i, token in enumerate(tokens): 
-        # Ignore token if a number, punctuation, whitespace, etc.
-        if _is_a_word(token):
-            # Don't proceed if word exists in English dictionary
-            # No correction needed
-            if token in ENGLISH_WORDS:
-                continue
-            # Check if word is a commonly misspelled one
-            # Can map to the correct word before attempting the autocorrect algorithm
+        if _is_a_misspelling(token):
+            # Check if word is commonly misspelled
             if token in COMMON_MISSPELLINGS:
-                # Log original word, corrected word, and source file if user requests
+                corrected = COMMON_MISSPELLINGS[token]
+            else:
+                # Otherwise, attempt correcting algorithm 
+                corrected = autocorrect.spell(token)
+            # Replace with correct word if token differs from prediction
+            if token != corrected:
+                tokens[i] = corrected
+                # Log original word, corrected word, and source file
                 if logging:
                     log_words.append(
                         '{}'.format(token) + '\t' + '>>>' \
-                        + '\t' + '{}'.format(COMMON_MISSPELLINGS[token]) \
+                        + '\t' + '{}'.format(corrected) \
                         + '\t' + '|' + '\t' + 'Source: {}'.format(current_input))
-                # Map and replace with correct word
-                tokens[i] = COMMON_MISSPELLINGS[token]
-            # Attempt correcting algorithm    
-            else:
-                corrected = autocorrect.spell(token)
-                # Make sure corrected word differs from original word
-                # Filter out words that begin with capital letter(s) (could be names)
-                if corrected != token and token[0] not in string.ascii_uppercase:
-                    # Log original word, corrected word, and source file if user requests
-                    if logging:
-                        log_words.append(
-                            '{}'.format(token) + '\t' + '>>>' \
-                            + '\t' + '{}'.format(corrected) \
-                            + '\t' + '|' + '\t' + 'Source: {}'.format(current_input))
-                    # Replace with correct word that autocorrect algorithm predicts
-                    tokens[i] = corrected
-        else:
-            # Executes early if token is not a word
-            continue
     
     # Rebuild passage from new tokens
     rebuilt_passage = ''.join(tokens)
