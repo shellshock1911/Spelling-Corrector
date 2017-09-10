@@ -132,7 +132,7 @@ def spelling_corrector(input_dir, logging='False', verbose='True'):
     """
     start_time = time.time() # Start runtime
     
-    # Set verbose flag for use throughout
+    # Set verbose and logging flags for use throughout
     logging = spelling_utils.str_to_bool(logging)
     verbose = spelling_utils.str_to_bool(verbose)
 

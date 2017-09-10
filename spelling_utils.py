@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-"""Set of helper functions for spelling_corrector.py"""
+"""Set of helper functions for spelling_correct.py"""
 
 # Allow compatibility between Python 2.7 and 3.5
 from __future__ import absolute_import
@@ -55,7 +55,7 @@ def str_to_bool(option):
 
 def read_input(input_file):
     
-    """Reads input file and prepares text for name replacing."""
+    """Reads input file and prepares text for spelling correction."""
     
     # Read in input file into a string 
     with open(input_file, 'r', encoding='utf-8') as input_handle:
@@ -75,13 +75,13 @@ def _is_a_misspelling(token):
     # Ignore token if a number, punctuation, whitespace, etc.
     if not token.isalpha():
         return False
+    # Ignore if token begins with capital letter
+    # Could be name of person, place, company, etc.
+    elif token.istitle():
+        return False
     # Ignore if token is in English dictionary
     # Doesn't need to be corrected
     elif token in ENGLISH_WORDS:
-        return False
-    # Ignore if token begins with capital letter
-    # Could be name of person, place, company, etc.
-    elif token[0] in string.ascii_uppercase:
         return False
     # Otherwise, no correction needed
     # True will be returned at this point

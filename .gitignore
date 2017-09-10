@@ -1,3 +1,5 @@
 __pycache__
 correct_log.txt
 corrected_output
+*.pyc
+.DS_Store
