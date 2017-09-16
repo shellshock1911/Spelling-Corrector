@@ -83,7 +83,7 @@ def _is_a_misspelling(token):
     # Doesn't need to be corrected
     elif token in ENGLISH_WORDS:
         return False
-    # Otherwise, no correction needed
+    # Otherwise, correction is needed
     # True will be returned at this point
     return True
         

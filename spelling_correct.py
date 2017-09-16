@@ -43,7 +43,7 @@ Current issues to be aware of :
         that names of people, places, events, etc., don't get attempt
         getting respelled.
         
-            *** Trying to fix this issue would likely even worse issues
+            *** Trying to fix this issue would likely cause even worse issues
         
     2.) Misspelled words can be handled, however grammar errors and/or 
         incorrectly used words cannot be. "Loss" in the sentence -
@@ -62,7 +62,7 @@ Current issues to be aware of :
         spaces cause major issues. If the corrector encounters "toprepare" 
         for example, it will respell it as "prepare", although one can clearly 
         see it should be "to prepare". "perperson" becoming "perversion" is a 
-        particulary bad mistake. 
+        particularly bad mistake. 
         
             *** Working on handling this using regex.
         
