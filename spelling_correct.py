@@ -7,7 +7,7 @@ word is quite computationally expensive, therefore runtime can be
 slow. Expect 3 to 5 minutes per 1000 text files. Run the following
 at the Terminal prompt to get started for Python 2.7:
     
-    $ python spelling_correct.py --input test_batch_input --logging True
+    $ python2 spelling_correct.py --input test_batch_input --logging True
     
        or (for Python 3.x)
        

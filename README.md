@@ -8,7 +8,7 @@ at the Terminal prompt to get started for Python 2.7:
     
     $ python2 spelling_correct.py --input test_batch_input --logging True
 
-       or (for Python 3.x)
+or (for Python 3.x)
        
     $ python3 spelling_correct.py --input test_batch_input --logging True
 

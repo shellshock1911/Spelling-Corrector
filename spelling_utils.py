@@ -13,7 +13,7 @@ from io import open
 
 import re # Used to parse texts
 import pickle # Packs and unpacks pre-stored Python objects
-import sys # Checks users Python version
+import sys # Checks user's Python version
 import string # Contains lists of useful English characters
 import autocorrect # autocorrect.spell(word) used as core correcting algorithm
 
