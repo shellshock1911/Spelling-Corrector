@@ -23,6 +23,8 @@ were corrected. Particulary bad mistakes may need to be hand-corrected.
 This log file will never be overwritten, so if you want to start fresh, delete
 it manually. A new one will automatically be created on the next run.
 
+-------------------------------
+
 The core spell correcting function requires the Python autocorrect package.
 In order to install this in your current environment, input the following at
 your Terminal prompt:
@@ -37,7 +39,7 @@ For more details on this package see:
 
 -------------------------------
 
-Current issues to be aware of :
+Current issues:
     
     1.) Capitalized words are ignored entirely. This was done so that
         that names of people, places, events, etc., don't get attempt
@@ -95,7 +97,7 @@ from optparse import OptionParser
 PARSER = OptionParser()
 
 PARSER.add_option('-i', '--input', dest='input_directory',
-                  help='input directory with files that need spelling corrections')
+                  help='input directory with files that need spelling correction')
 PARSER.add_option('-l', '--logging', dest='logging', default="False",
                   help='log words that were caught and corrected')
 PARSER.add_option('-v', '--verbose', dest='verbose', default="True",
@@ -116,7 +118,7 @@ assert os.path.isdir(INPUT_DIR), \
 OUTPUT_DIR = 'corrected_output'  
 # Check if output directory exists, otherwise create one
 if not os.path.isdir(OUTPUT_DIR):
-    os.mkdir(OUTPUT_DIR)  
+    os.mkdir(OUTPUT_DIR)
     
 ##### Main Function #####
 def spelling_corrector(input_dir, logging='False', verbose='True'):

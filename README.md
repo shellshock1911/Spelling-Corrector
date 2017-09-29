@@ -22,6 +22,8 @@ were corrected. Particularly bad mistakes may need to be hand-corrected.
 This log file will never be overwritten, so if you want to start fresh, delete
 it manually. A new one will automatically be created on the next run.
 
+-------------------------------
+
 The core spell correcting function requires the Python autocorrect package.
 To install this in your current environment, input the following at
 your Terminal prompt:
@@ -33,6 +35,8 @@ For more details on this package see:
 - https://pypi.python.org/pypi/autocorrect/0.2.0 --- (Package host)
 - https://github.com/phatpiglet/autocorrect/ --- (Source repository)
 - http://norvig.com/spell-correct.html --- (Theoretical basis)
+
+-------------------------------
 
 **Current Issues**
     
